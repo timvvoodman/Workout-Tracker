@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 
 //link to mongoDB models
-//const db = require("./models");
+const db = require("./models");
 
 //initialize express server
 const app = express();
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //Connect to Database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dbname", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
