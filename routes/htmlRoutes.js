@@ -1,5 +1,5 @@
 //Dependencies//
-
+const db = require("../models");
 const path = require("path");
 
 //Routing//
