@@ -1,4 +1,5 @@
 //Dependencies//
+console.log(process.env.MONGODB_URI + "===========================HELLO");
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -28,26 +29,11 @@ require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 //Connect to Database
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true,
-//   useFindAndModify: true,
-// });
-
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://t1mvv:rootroot@timw.br2zu.mongodb.net/workout?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: true,
-});
-client.connect((err) => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
 });
 
 app.listen(PORT, () => {
