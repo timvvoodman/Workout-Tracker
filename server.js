@@ -29,11 +29,26 @@ require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 //Connect to Database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+//   useFindAndModify: true,
+// });
+
+const MongoClient = require("mongodb").MongoClient;
+const uri = process.env.MONGODB_URI || "mongodb://localhost/workout";
+
+const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: true,
+});
+client.connect((err) => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
 
 app.listen(PORT, () => {
