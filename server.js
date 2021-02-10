@@ -46,7 +46,7 @@ const client = new MongoClient(uri, {
   useFindAndModify: true,
 });
 client.connect((err) => {
-  const collection = client.db("workout").collection("workouts");
+  const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   client.close();
 });
