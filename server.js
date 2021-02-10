@@ -1,15 +1,11 @@
 //Dependencies//
-console.log(process.env.MONGODB_URI + "===========================HELLO");
+
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-require("dotenv").config();
 
 //Create Port
 const PORT = process.env.PORT || 3000;
-
-//link to mongoDB models
-const db = require("./models");
 
 //initialize express server
 const app = express();
@@ -29,12 +25,15 @@ require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 //Connect to Database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: true,
-});
+mongoose.connect(
+  "mongodb+srv://t1mvv:rootroot@timw.br2zu.mongodb.net/workout?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`Workout Tracker is running on port ${PORT}!`);
