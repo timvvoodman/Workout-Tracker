@@ -1,3 +1,4 @@
+console.log(process.env.MONGODB_URI);
 //Dependencies//
 const express = require("express");
 const logger = require("morgan");
