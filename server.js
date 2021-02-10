@@ -37,8 +37,8 @@ require("./routes/apiRoutes.js")(app);
 // });
 
 const MongoClient = require("mongodb").MongoClient;
-const uri = process.env.MONGODB_URI || "mongodb://localhost/workout";
-
+const uri =
+  "mongodb+srv://t1mvv:rootroot@timw.br2zu.mongodb.net/workout?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -46,7 +46,7 @@ const client = new MongoClient(uri, {
   useFindAndModify: true,
 });
 client.connect((err) => {
-  const collection = client.db("test").collection("devices");
+  const collection = client.db("workout").collection("workouts");
   // perform actions on the collection object
   client.close();
 });
