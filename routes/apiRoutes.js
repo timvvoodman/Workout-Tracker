@@ -11,7 +11,8 @@ const db = require("../models");
 module.exports = function (app) {
   //GET: Workout data
   app.get("/api/workouts", function (req, res) {
-    db.Workouts.find({})
+    db.workouts
+      .find({})
       .then((dbWorkouts) => {
         res.json(dbWorkouts);
       })
@@ -22,11 +23,12 @@ module.exports = function (app) {
 
   //Put: Add Exercise to new workout
   app.put("/api/workouts/:id", ({ body, params }, res) => {
-    db.Workouts.findByIdAndUpdate(
-      params.id,
-      { $push: { exercises: body } },
-      { new: true, runValidators: true }
-    )
+    db.workouts
+      .findByIdAndUpdate(
+        params.id,
+        { $push: { exercises: body } },
+        { new: true, runValidators: true }
+      )
       .then((dbWorkouts) => {
         res.json(dbWorkouts);
       })
@@ -37,7 +39,8 @@ module.exports = function (app) {
 
   //POST: Create new Workout
   app.post("/api/workouts", (req, res) => {
-    db.Workouts.create({})
+    db.workouts
+      .create({})
       .then((dbWorkouts) => {
         res.json(dbWorkouts);
       })
@@ -48,7 +51,8 @@ module.exports = function (app) {
 
   //GET: last 7 workouts
   app.get("/api/workouts/range", (req, res) => {
-    db.Workouts.find({})
+    db.workouts
+      .find({})
       .limit(7)
       .then((dbWorkouts) => {
         console.log("Here is the last 7 workouts");
